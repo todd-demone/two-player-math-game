@@ -1,40 +1,55 @@
 # Two Player Math Game - Notes
 
-## QUESTION CLASS
-
-### STATE
-int_one = rand(1..20)
-int_two = rand(1..20)
-@question = "What does #{int_one} plus #{int_two} equal?"
-@result = 
-
-### BEHAVIOUR
-attr_reader :question, :result
-is_correct_answer?(input) [returns boolean]
-- formulate a question using the numbers
-    - ex. @int_one + @int_two = result
-    "What does #{int_one} plus #{int_two} equal?"
-
 ## PLAYER CLASS
 
 ### STATE
 
-lives (Integer)
+```
+@id (integer)
+@lives (Integer)
+```
 
 ### BEHAVIOUR
-
+```
 attr_reader :lives
-player.take_life = player.lives--
-dead? returns true or false
 
 def initialize(id)
   @id = id
   @lives = 3
 end
 
+def take_life 
+  @lives -= 1
+end
+
+def dead?
+  # returns true or false
+end
+
+```
+
+## QUESTION CLASS
+
+### STATE
+```
+@int_one = rand(1..20)
+@int_two = rand(1..20)
+@question = "What does #{@int_one} plus #{@int_two} equal?"
+``` 
+
+### BEHAVIOUR
+```
+attr_reader :question
+
+def is_correct_answer?(input) 
+    # [returns boolean]
+end
+```
+
 ## GAME CLASS
 
 ### BEHAVIOUR
+```
 def initialize
   @p1 = Player.new(1)
   @p2 = Player.new(2)
@@ -61,3 +76,4 @@ game loop:
     puts "P1: #{p1.lives}/3 vs P2 #{p2.lives}/3"
     puts ---- NEW TURN ----
     switch is_player_one is_player_one = !is_player_one
+```
