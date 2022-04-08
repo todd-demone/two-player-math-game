@@ -54,6 +54,12 @@ end
 
 ## GAME CLASS
 
+### STATE
+```
+@p1 = Player.new(1)
+@p2 = Player.new(2)
+```
+
 ### BEHAVIOUR
 ```
 def initialize
