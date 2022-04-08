@@ -41,6 +41,12 @@ end
 ```
 attr_reader :question
 
+def initialize
+  @int_one = rand(1..20)
+  @int_two = rand(1..20)
+  @question = "What does #{@int_one} plus #{@int_two} equal?"
+end
+
 def is_correct_answer?(input) 
     # [returns boolean]
 end
@@ -55,25 +61,29 @@ def initialize
   @p2 = Player.new(2)
 end
 
-is_player_one? = true
-game loop:
-  player = is_player_one? ? @p1 : @p2 
-  q = Question.new
-  puts "Player #{player.id}: #{q.question}"
-  input = gets.chomp.to_i
-  if q.is_correct_answer?(input)
-    puts "Player #{player.id}: YES! You are correct."
-  else 
-    puts "Player #{player.id}: Seriously? No!"
-    player.take_life
+def start:
+  is_player_one = true
+  while (p1 not dead && p2 not dead)
+    player = is_player_one ? @p1 : @p2 
+    q = Question.new
+    puts "Player #{player.id}: #{q.question}"
+    input = gets.chomp.to_i
+    if q.is_correct_answer?(input)
+        puts "Player #{player.id}: YES! You are correct."
+    else 
+        puts "Player #{player.id}: Seriously? No!"
+        player.take_life
+    end
+    if player.dead?
+        other_player = is_player_one ? @p2 : @p1
+        puts "Player #{other_player.id} wins with a score #{other_player.lives}/3"
+        puts "GAME OVER"
+        puts "Good bye!"
+    else
+        puts "P1: #{p1.lives}/3 vs P2 #{p2.lives}/3"
+        puts ---- NEW TURN ----
+        is_player_one = !is_player_one
+    end
   end
-  if player.dead?
-    Player #{player.id} wins with a score #{player.lives}/3
-    GAME OVER
-    Good bye!
-    [exit from loop]
-  else
-    puts "P1: #{p1.lives}/3 vs P2 #{p2.lives}/3"
-    puts ---- NEW TURN ----
-    switch is_player_one is_player_one = !is_player_one
+end
 ```
